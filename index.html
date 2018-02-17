@@ -1,0 +1,38 @@
+<html ng-app="myApp">
+    <head>
+        <title>index</title>
+        <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+        <script>
+            (function(){
+                angular.module("myApp",[]);
+                
+                angular.module("myApp")
+                .controller("demoCtrl",function($scope,$http){
+                    $scope.name="sushant";
+                    var url="data.txt";
+                    $http.get(url).then(function(responce){
+                        $scope.students=responce.data;
+                       console.log($scope.students); 
+                    });
+                })
+            })();
+        </script>
+    </head>
+    <body>
+        <div ng-controller="demoCtrl">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>Roll No</td>
+                    <td>Percentage</td>
+                </tr>
+                <tr ng-repeat="student in students">
+                    <td>{{student.Name}}</td>
+                    <td>{{student.RollNo}}</td>
+                    <td>{{student.Percentage}}</td>
+                </tr>
+            </table>
+        </div>
+        
+    </body>
+</html>
